@@ -1,3 +1,33 @@
+const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
+const restaurants = [];
+
+fetch(endpoint)
+.then(blob => blob.json())
+.then(data => restaurants.push(...data));
+
+function findMatches(wordToMatch, restaurants) {
+return restaurants.filter(place => {
+const regex = new RegExp(wordToMatch, 'gi');
+return place.zip.match(regex) place.category.match(regex) place.name.match(regex)
+});
+}
+
+
+function displayMatches() {
+  const matchArray = findMatches(this.value, restaurants);
+  const html = matchArray.map(place => {
+  const regex = new RegExp(this.value, 'gi');
+  const rName = place.name.replace(regex, <span class="h1">${this.value}</span>);
+  const rCategory = place.category.replace(regex, <span class="h1">${this.value}</span>);
+  const rAddress = place.address_line_1.replace(regex, <span class="h1">${this.value}</span>);
+  const rCity = place.city.replace(regex, <span class="h1">${this.value}</span>);
+  const rZip = place.zip.replace(regex, <span class="h1">${this.value}</span>);
+  return
+  
+  searchInput.addEventListener('keyup', displayMatches);
+  searchInput.addEventListener('change', displayMatches);
+
+
 function convertRestaurantsToCategories(restaurantList) {
   // process your restaurants here!
   return list;
